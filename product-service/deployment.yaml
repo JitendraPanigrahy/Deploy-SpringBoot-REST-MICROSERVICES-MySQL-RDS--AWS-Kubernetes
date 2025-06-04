@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
          - name: productservice-container
-           image: <docker image name>
+           image: <docker image URL>
            imagePullPolicy: IfNotPresent
            ports:
             - containerPort: 8081
