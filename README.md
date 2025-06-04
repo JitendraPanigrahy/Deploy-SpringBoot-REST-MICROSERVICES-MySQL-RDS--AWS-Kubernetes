@@ -1,5 +1,5 @@
-# INVENTORY MANAGEMENT SYSTEM APPLICATION #
+# Deploy SpringBoot REST Microservices with MySQL(RDS) in  AWS (Kubernetes)
 
-# Deploy SpringBoot REST Microservices with MySQL(RDS) in  AWS (Kubernetes) # 
+## Implementing some use cases for Inventory Management System
 
-## Microservices - product-service and supplier-service ##
+## Microservices - product-service and supplier-service
