@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: productservice
+  template:
+    metadata:
+      labels:
+        app: productservice
+    spec:
+      containers:
+         - name: productservice-container
+           image: dockerusertwo/testrepo2025:productservice-5.0.0-RELEASE
+           imagePullPolicy: IfNotPresent
+           ports:
+            - containerPort: 8081
+           env:
+                - name: RDS_MYSQL_HOST
+                  valueFrom:
+                      secretKeyRef:
+                          name: rds-mysql-product-secret
+                          key: host
+                - name: RDS_MYSQL_PRODUCT_DB
+                  valueFrom:
+                      configMapKeyRef:
+                          name: rds-mysql-product-config
+                          key: product_db_name
+                - name: RDS_MYSQL_PORT
+                  valueFrom:
+                      configMapKeyRef:
+                          name: rds-mysql-product-config
+                          key: port
+                - name: RDS_MYSQL_USER
+                  valueFrom:
+                      secretKeyRef:
+                          name: rds-mysql-product-secret
+                          key: user
+                - name: RDS_MYSQL_PASSWORD
+                  valueFrom:
+                      secretKeyRef:
+                          name: rds-mysql-product-secret
+                          key: password

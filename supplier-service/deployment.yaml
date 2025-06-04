@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: supplier
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: supplierservice
+  template:
+    metadata:
+      labels:
+        app: supplierservice
+    spec:
+      containers:
+         - name: supplierservice-container
+           image: dockerusertwo/testrepo2025:supplierservice-5.0.0-RELEASE
+           imagePullPolicy: IfNotPresent
+           ports:
+            - containerPort: 8082
+           env:
+                - name: RDS_MYSQL_HOST
+                  valueFrom:
+                      secretKeyRef:
+                          name: rds-mysql-supplier-secret
+                          key: host
+                - name: RDS_MYSQL_SUPPLIER_DB
+                  valueFrom:
+                      configMapKeyRef:
+                          name: rds-mysql-supplier-config
+                          key: supplier_db_name
+                - name: RDS_MYSQL_PORT
+                  valueFrom:
+                      configMapKeyRef:
+                          name: rds-mysql-supplier-config
+                          key: port
+                - name: RDS_MYSQL_USER
+                  valueFrom:
+                      secretKeyRef:
+                          name: rds-mysql-supplier-secret
+                          key: user
+                - name: RDS_MYSQL_PASSWORD
+                  valueFrom:
+                      secretKeyRef:
+                          name: rds-mysql-supplier-secret
+                          key: password

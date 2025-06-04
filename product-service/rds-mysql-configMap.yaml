@@ -1,0 +1,8 @@
+apiVersion : v1
+kind : ConfigMap
+metadata:
+  name : rds-mysql-product-config
+  namespace: default
+data:
+  product_db_name: product_db
+  port: "3306"
