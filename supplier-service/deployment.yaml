@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
          - name: supplierservice-container
-           image: dockerusertwo/testrepo2025:supplierservice-5.0.0-RELEASE
+           image: <Docker Image Url>
            imagePullPolicy: IfNotPresent
            ports:
             - containerPort: 8082
