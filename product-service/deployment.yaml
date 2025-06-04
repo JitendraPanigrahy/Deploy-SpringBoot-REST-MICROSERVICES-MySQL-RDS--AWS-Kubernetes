@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
          - name: productservice-container
-           image: dockerusertwo/testrepo2025:productservice-5.0.0-RELEASE
+           image: <docker image name>
            imagePullPolicy: IfNotPresent
            ports:
             - containerPort: 8081
